@@ -3,15 +3,22 @@
 #include <state_machine/State.h>
 #include <state_machine/StateMachine.h>
 
-#include <memory>
-#include <string>
-
 class StateA : public State {
   public:
-    void handleEvent(const std::string& event, std::shared_ptr<StateMachine> fsm) override;
+    StateA();
+    void onEnter() override;
+    void onExit() override;
+
+  protected:
+    void onUnhandledEvent(const Event& event, StateMachine& fsm) override;
 };
 
 class StateB : public State {
   public:
-    void handleEvent(const std::string& event, std::shared_ptr<StateMachine> fsm) override;
+    StateB();
+    void onEnter() override;
+    void onExit() override;
+
+  protected:
+    void onUnhandledEvent(const Event& event, StateMachine& fsm) override;
 };
